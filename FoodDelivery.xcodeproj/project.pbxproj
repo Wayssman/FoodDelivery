@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF092B5F26500AD700D55A89 /* FoodCell.swift */; };
+		FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF38FDB8265018E600CCD911 /* UserPreferences.swift */; };
 		FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B81264F97F100ABF751 /* AppDelegate.swift */; };
 		FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B83264F97F100ABF751 /* SceneDelegate.swift */; };
 		FFD48B89264F97F100ABF751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD48B87264F97F100ABF751 /* Main.storyboard */; };
@@ -19,9 +21,13 @@
 		FFD48BAC264FBDAA00ABF751 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BAB264FBDAA00ABF751 /* BannerView.swift */; };
 		FFD48BAF264FBDC100ABF751 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */; };
 		FFD48BB2264FBDD400ABF751 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB1264FBDD400ABF751 /* FoodView.swift */; };
+		FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB6264FC03200ABF751 /* BannerCell.swift */; };
+		FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BBB264FC77600ABF751 /* CategoryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FF092B5F26500AD700D55A89 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		FF38FDB8265018E600CCD911 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		FFD48B7E264F97F100ABF751 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD48B81264F97F100ABF751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD48B83264F97F100ABF751 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +42,8 @@
 		FFD48BAB264FBDAA00ABF751 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		FFD48BB1264FBDD400ABF751 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
+		FFD48BB6264FC03200ABF751 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		FFD48BBB264FC77600ABF751 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +57,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FF092B62265010AE00D55A89 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BB1264FBDD400ABF751 /* FoodView.swift */,
+				FF092B5F26500AD700D55A89 /* FoodCell.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
 		FFD48B75264F97F100ABF751 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +93,7 @@
 				FFD48B8A264F97F200ABF751 /* Assets.xcassets */,
 				FFD48B8C264F97F200ABF751 /* LaunchScreen.storyboard */,
 				FFD48B8F264F97F200ABF751 /* Info.plist */,
+				FF38FDB8265018E600CCD911 /* UserPreferences.swift */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -142,11 +160,29 @@
 			isa = PBXGroup;
 			children = (
 				FFD48BA5264FB5A300ABF751 /* FoodListView.swift */,
-				FFD48BAB264FBDAA00ABF751 /* BannerView.swift */,
-				FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */,
-				FFD48BB1264FBDD400ABF751 /* FoodView.swift */,
+				FFD48BB9264FC71B00ABF751 /* Banner */,
+				FFD48BBE264FD0C900ABF751 /* Category */,
+				FF092B62265010AE00D55A89 /* Food */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FFD48BB9264FC71B00ABF751 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BAB264FBDAA00ABF751 /* BannerView.swift */,
+				FFD48BB6264FC03200ABF751 /* BannerCell.swift */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		FFD48BBE264FD0C900ABF751 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */,
+				FFD48BBB264FC77600ABF751 /* CategoryCell.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,7 +256,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD48BA6264FB5A300ABF751 /* FoodListView.swift in Sources */,
+				FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */,
+				FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */,
 				FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */,
+				FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */,
 				FFD48BA9264FB91400ABF751 /* FoodListPresenter.swift in Sources */,
 				FFD48BAC264FBDAA00ABF751 /* BannerView.swift in Sources */,
 				FFD48BAF264FBDC100ABF751 /* CategoriesView.swift in Sources */,
@@ -228,6 +267,7 @@
 				FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */,
 				FFD48B9F264FAEAE00ABF751 /* FoodListProtocols.swift in Sources */,
 				FFD48BA3264FAF8D00ABF751 /* FoodListRouter.swift in Sources */,
+				FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
