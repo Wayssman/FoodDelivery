@@ -3,10 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A39D5414DBE412A0D19A9E0F /* Pods_FoodDelivery.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94321210D132433A86D6E642 /* Pods_FoodDelivery.framework */; };
+		FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF092B5F26500AD700D55A89 /* FoodCell.swift */; };
+		FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF38FDB8265018E600CCD911 /* UserPreferences.swift */; };
+		FF59C9B326507468005B14CA /* FoodListRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF59C9B226507468005B14CA /* FoodListRemoteDataManager.swift */; };
+		FF621E9F26507C6500F32B72 /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF621E9E26507C6500F32B72 /* MealModel.swift */; };
+		FF621EA22651223500F32B72 /* FoodListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF621EA12651223500F32B72 /* FoodListInteractor.swift */; };
 		FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B81264F97F100ABF751 /* AppDelegate.swift */; };
 		FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B83264F97F100ABF751 /* SceneDelegate.swift */; };
 		FFD48B89264F97F100ABF751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD48B87264F97F100ABF751 /* Main.storyboard */; };
@@ -19,9 +25,20 @@
 		FFD48BAC264FBDAA00ABF751 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BAB264FBDAA00ABF751 /* BannerView.swift */; };
 		FFD48BAF264FBDC100ABF751 /* CategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */; };
 		FFD48BB2264FBDD400ABF751 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB1264FBDD400ABF751 /* FoodView.swift */; };
+		FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB6264FC03200ABF751 /* BannerCell.swift */; };
+		FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BBB264FC77600ABF751 /* CategoryCell.swift */; };
+		FFDF26A72651479000C768BF /* MealModelShowed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF26A62651479000C768BF /* MealModelShowed.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		579112109FA0BF44CE356B84 /* Pods-FoodDelivery.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.debug.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.debug.xcconfig"; sourceTree = "<group>"; };
+		94321210D132433A86D6E642 /* Pods_FoodDelivery.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodDelivery.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C8B9402998609F4B34FEEE10 /* Pods-FoodDelivery.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodDelivery.release.xcconfig"; path = "Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery.release.xcconfig"; sourceTree = "<group>"; };
+		FF092B5F26500AD700D55A89 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
+		FF38FDB8265018E600CCD911 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
+		FF59C9B226507468005B14CA /* FoodListRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListRemoteDataManager.swift; sourceTree = "<group>"; };
+		FF621E9E26507C6500F32B72 /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
+		FF621EA12651223500F32B72 /* FoodListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListInteractor.swift; sourceTree = "<group>"; };
 		FFD48B7E264F97F100ABF751 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD48B81264F97F100ABF751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD48B83264F97F100ABF751 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,6 +53,9 @@
 		FFD48BAB264FBDAA00ABF751 /* BannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
 		FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesView.swift; sourceTree = "<group>"; };
 		FFD48BB1264FBDD400ABF751 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
+		FFD48BB6264FC03200ABF751 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
+		FFD48BBB264FC77600ABF751 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		FFDF26A62651479000C768BF /* MealModelShowed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelShowed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,17 +63,54 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A39D5414DBE412A0D19A9E0F /* Pods_FoodDelivery.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32CD8DDAE4AEFE555BB12FA0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				579112109FA0BF44CE356B84 /* Pods-FoodDelivery.debug.xcconfig */,
+				C8B9402998609F4B34FEEE10 /* Pods-FoodDelivery.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		75483E3B17FDC72B9DF3CC5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				94321210D132433A86D6E642 /* Pods_FoodDelivery.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FF092B62265010AE00D55A89 /* Food */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BB1264FBDD400ABF751 /* FoodView.swift */,
+				FF092B5F26500AD700D55A89 /* FoodCell.swift */,
+			);
+			path = Food;
+			sourceTree = "<group>";
+		};
+		FF59C9B1265073C0005B14CA /* Remote */ = {
+			isa = PBXGroup;
+			children = (
+				FF59C9B226507468005B14CA /* FoodListRemoteDataManager.swift */,
+			);
+			path = Remote;
+			sourceTree = "<group>";
+		};
 		FFD48B75264F97F100ABF751 = {
 			isa = PBXGroup;
 			children = (
 				FFD48B80264F97F100ABF751 /* FoodDelivery */,
 				FFD48B7F264F97F100ABF751 /* Products */,
+				32CD8DDAE4AEFE555BB12FA0 /* Pods */,
+				75483E3B17FDC72B9DF3CC5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +133,7 @@
 				FFD48B8A264F97F200ABF751 /* Assets.xcassets */,
 				FFD48B8C264F97F200ABF751 /* LaunchScreen.storyboard */,
 				FFD48B8F264F97F200ABF751 /* Info.plist */,
+				FF38FDB8265018E600CCD911 /* UserPreferences.swift */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -96,6 +154,8 @@
 		FFD48B97264FADDF00ABF751 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				FF621E9E26507C6500F32B72 /* MealModel.swift */,
+				FFDF26A62651479000C768BF /* MealModelShowed.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -103,6 +163,7 @@
 		FFD48B98264FADFF00ABF751 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				FF59C9B1265073C0005B14CA /* Remote */,
 			);
 			path = "Data Manager";
 			sourceTree = "<group>";
@@ -110,6 +171,7 @@
 		FFD48B99264FAE0C00ABF751 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
+				FF621EA12651223500F32B72 /* FoodListInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -142,11 +204,29 @@
 			isa = PBXGroup;
 			children = (
 				FFD48BA5264FB5A300ABF751 /* FoodListView.swift */,
-				FFD48BAB264FBDAA00ABF751 /* BannerView.swift */,
-				FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */,
-				FFD48BB1264FBDD400ABF751 /* FoodView.swift */,
+				FFD48BB9264FC71B00ABF751 /* Banner */,
+				FFD48BBE264FD0C900ABF751 /* Category */,
+				FF092B62265010AE00D55A89 /* Food */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		FFD48BB9264FC71B00ABF751 /* Banner */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BAB264FBDAA00ABF751 /* BannerView.swift */,
+				FFD48BB6264FC03200ABF751 /* BannerCell.swift */,
+			);
+			path = Banner;
+			sourceTree = "<group>";
+		};
+		FFD48BBE264FD0C900ABF751 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				FFD48BAE264FBDC100ABF751 /* CategoriesView.swift */,
+				FFD48BBB264FC77600ABF751 /* CategoryCell.swift */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +236,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FFD48B92264F97F300ABF751 /* Build configuration list for PBXNativeTarget "FoodDelivery" */;
 			buildPhases = (
+				B833C160036DC3BAFC81300B /* [CP] Check Pods Manifest.lock */,
 				FFD48B7A264F97F100ABF751 /* Sources */,
 				FFD48B7B264F97F100ABF751 /* Frameworks */,
 				FFD48B7C264F97F100ABF751 /* Resources */,
+				A541B71FC3D490A2B1098E87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -214,20 +296,70 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A541B71FC3D490A2B1098E87 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FoodDelivery/Pods-FoodDelivery-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B833C160036DC3BAFC81300B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FoodDelivery-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FFD48B7A264F97F100ABF751 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				FFD48BA6264FB5A300ABF751 /* FoodListView.swift in Sources */,
+				FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */,
+				FF621EA22651223500F32B72 /* FoodListInteractor.swift in Sources */,
+				FFDF26A72651479000C768BF /* MealModelShowed.swift in Sources */,
+				FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */,
 				FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */,
+				FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */,
 				FFD48BA9264FB91400ABF751 /* FoodListPresenter.swift in Sources */,
 				FFD48BAC264FBDAA00ABF751 /* BannerView.swift in Sources */,
 				FFD48BAF264FBDC100ABF751 /* CategoriesView.swift in Sources */,
 				FFD48BB2264FBDD400ABF751 /* FoodView.swift in Sources */,
+				FF59C9B326507468005B14CA /* FoodListRemoteDataManager.swift in Sources */,
+				FF621E9F26507C6500F32B72 /* MealModel.swift in Sources */,
 				FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */,
 				FFD48B9F264FAEAE00ABF751 /* FoodListProtocols.swift in Sources */,
 				FFD48BA3264FAF8D00ABF751 /* FoodListRouter.swift in Sources */,
+				FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -371,6 +503,7 @@
 		};
 		FFD48B93264F97F300ABF751 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 579112109FA0BF44CE356B84 /* Pods-FoodDelivery.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -390,6 +523,7 @@
 		};
 		FFD48B94264F97F300ABF751 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C8B9402998609F4B34FEEE10 /* Pods-FoodDelivery.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
