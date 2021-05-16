@@ -19,7 +19,7 @@ class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
         urlConstructor.host = "www.themealdb.com"
         urlConstructor.path = "/api/json/v1/1/search.php"
         // Для примера грузим все блюда на букву 'c'
-        urlConstructor.queryItems = [URLQueryItem(name: "f", value: "d")]
+        urlConstructor.queryItems = [URLQueryItem(name: "f", value: "e")]
         
         Alamofire
             .request(urlConstructor.url!)
