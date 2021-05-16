@@ -27,7 +27,8 @@ class FoodListView: UIViewController {
                                          byRoundingCorners:[.topRight, .topLeft],
                                          cornerRadii: CGSize(width: 20, height:  20))
     private let maskLayer = CAShapeLayer()
-    private var startPosition: CGFloat?
+    
+    private var lock = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -109,9 +110,18 @@ extension FoodListView: UITableViewDelegate, UIScrollViewDelegate {
                 self.foodViewHeight.constant = 800
                 self.scrollView.isScrollEnabled = true
             }
-            // Определяем верхнюю ячейку
-            let row = self.foodViewController.tableView.indexPathsForVisibleRows?[0].row ?? 0
-            processTopCell(row: row)
+            // Определяем верхнюю ячейку, если скролл не занят действием переключения между категориями
+            if lock == false {
+                let row = self.foodViewController.tableView.indexPathsForVisibleRows?[0].row ?? 0
+                processTopCell(row: row)
+            }
+        }
+    }
+    
+    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
+        if scrollView == self.foodViewController.tableView {
+            // Запускаем отслеживание после анимации
+            lock = false
         }
     }
 }
@@ -121,13 +131,13 @@ extension FoodListView: UICollectionViewDelegate {
         categoriesViewController.setActiveCategory(index: indexPath.item)
         
         let categoryName = categoriesViewController.categoryList[indexPath.item]
+        lock = true
         foodViewController.processActiveCategory(name: categoryName)
     }
 }
 
 extension FoodListView: FoodListViewProtocol {
     func showFood(meals: [MealModelShowed]) {
-        print(meals)
         foodViewController.foodList = meals
         foodViewController.tableView.reloadData()
         
