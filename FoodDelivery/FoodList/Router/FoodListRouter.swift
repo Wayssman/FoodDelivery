@@ -13,12 +13,19 @@ class FoodListRouter: FooldListRouterProtocol {
         let navigationController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "FoodNavigationController")
         
         if let view = navigationController.children.first as? FoodListView {
-            let presenter: FoodListPresenterProtocol = FoodListPresenter()
             let router: FoodListRouter = FoodListRouter()
+            let presenter: FoodListPresenterProtocol & FoodListInteractorOutputProtocol = FoodListPresenter()
+            let interactor: FoodListInteractorInputProtocol & FoodListRemoteDataManagerOutputProtocol = FoodListInteractor()
+            let remoteDataManager: FoodListRemoteDataManagerInputProtocol = FoodListRemoteDataManager()
+            
             
             view.presenter = presenter
             presenter.view = view
             presenter.router = router
+            presenter.interactor = interactor
+            interactor.presenter = presenter
+            interactor.remoteDataManager = remoteDataManager
+            remoteDataManager.remoteRequestHandler = interactor
             
             return navigationController
         }

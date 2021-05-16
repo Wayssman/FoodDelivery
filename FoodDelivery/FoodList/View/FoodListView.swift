@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PKHUD
 
 class FoodListView: UIViewController {
     
@@ -26,6 +27,7 @@ class FoodListView: UIViewController {
                                          byRoundingCorners:[.topRight, .topLeft],
                                          cornerRadii: CGSize(width: 20, height:  20))
     private let maskLayer = CAShapeLayer()
+    private var startPosition: CGFloat?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +39,9 @@ class FoodListView: UIViewController {
         scrollView.isScrollEnabled = true
         foodViewController.tableView.delegate = self
         foodViewController.tableView.isScrollEnabled = false
+        
+        // Отслеживаем нажатия по subview
+        categoriesViewController.collectionView.delegate = self
         
         // Задаем цвета
         view.backgroundColor = UserPreferences.mainBackgroundColor
@@ -65,12 +70,18 @@ class FoodListView: UIViewController {
             self.foodViewController = foodVC
         }
     }
+    
+    func processTopCell(row: Int) {
+        // Т.к. FoodListView - ScrollDelegate для FoodView, обрабатываем в ней
+        let category = foodViewController.foodList[row].category
+        categoriesViewController.processActiveCategory(name: category)
+    }
 }
 
 extension FoodListView: UITableViewDelegate, UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let screenHeight = UIScreen.main.bounds.height
-
+        
         if scrollView == self.scrollView {
             if scrollView.contentOffset.y >= bannerView.frame.height {
                 // Останавливаем скролл на этом месте
@@ -98,10 +109,43 @@ extension FoodListView: UITableViewDelegate, UIScrollViewDelegate {
                 self.foodViewHeight.constant = 800
                 self.scrollView.isScrollEnabled = true
             }
+            // Определяем верхнюю ячейку
+            let row = self.foodViewController.tableView.indexPathsForVisibleRows?[0].row ?? 0
+            processTopCell(row: row)
         }
     }
 }
 
+extension FoodListView: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        categoriesViewController.setActiveCategory(index: indexPath.item)
+        
+        let categoryName = categoriesViewController.categoryList[indexPath.item]
+        foodViewController.processActiveCategory(name: categoryName)
+    }
+}
+
 extension FoodListView: FoodListViewProtocol {
+    func showFood(meals: [MealModelShowed]) {
+        print(meals)
+        foodViewController.foodList = meals
+        foodViewController.tableView.reloadData()
+        
+        // Убираем повторы и передаем
+        var set = Set<String>()
+        categoriesViewController.categoryList = meals.map{ $0.category }.filter { set.insert($0).inserted }
+        categoriesViewController.collectionView.reloadData()
+    }
     
+    func showError() {
+        HUD.flash(.label("Ошибка при загрузке данных!"), delay: 2.0)
+    }
+    
+    func showLoading() {
+        HUD.show(.progress)
+    }
+    
+    func hideLoading() {
+        HUD.hide()
+    }
 }

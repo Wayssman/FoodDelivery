@@ -201,7 +201,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="88" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoB-bA-4il">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoB-bA-4il">
                                                     <rect key="frame" x="0.0" y="24" width="88" height="32"/>
                                                     <state key="normal" title="Пицца"/>
                                                 </button>
