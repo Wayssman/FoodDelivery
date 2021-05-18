@@ -7,11 +7,11 @@
 
 import UIKit
 
-protocol FooldListRouterProtocol: class {
+protocol FooldListRouterProtocol: AnyObject {
     static func createFoodListModule() -> UIViewController
 }
 
-protocol FoodListViewProtocol: class {
+protocol FoodListViewProtocol: AnyObject {
     var presenter: FoodListPresenterProtocol? { get set }
     
     // Запрос от Presenter к View
@@ -22,7 +22,7 @@ protocol FoodListViewProtocol: class {
     func hideLoading()
 }
 
-protocol FoodListPresenterProtocol: class {
+protocol FoodListPresenterProtocol: AnyObject {
     var router: FooldListRouterProtocol? { get set }
     var view: FoodListViewProtocol? { get set }
     var interactor: FoodListInteractorInputProtocol? { get set }
@@ -31,7 +31,7 @@ protocol FoodListPresenterProtocol: class {
     func viewDidLoad()
 }
 
-protocol FoodListInteractorInputProtocol: class {
+protocol FoodListInteractorInputProtocol: AnyObject {
     var presenter: FoodListInteractorOutputProtocol? { get set }
     var remoteDataManager: FoodListRemoteDataManagerInputProtocol? { get set }
     
@@ -39,20 +39,20 @@ protocol FoodListInteractorInputProtocol: class {
     func getFoodList()
 }
 
-protocol FoodListInteractorOutputProtocol: class {
+protocol FoodListInteractorOutputProtocol: AnyObject {
     // Ответ от Interactor к Presenter
     func didRecieveFood(_ meals: [MealModel])
     func onError()
 }
 
-protocol FoodListRemoteDataManagerInputProtocol: class {
+protocol FoodListRemoteDataManagerInputProtocol: AnyObject {
     var remoteRequestHandler: FoodListRemoteDataManagerOutputProtocol? { get set }
     
     // Запрос от Interactor к DataManager
     func getFoodList()
 }
 
-protocol FoodListRemoteDataManagerOutputProtocol: class {
+protocol FoodListRemoteDataManagerOutputProtocol: AnyObject {
     // Ответ от DataManager к Interactor
     func onFoodReceived(_ meals: [MealModel])
     func onError()
