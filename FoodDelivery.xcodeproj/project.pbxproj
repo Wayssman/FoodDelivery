@@ -11,8 +11,12 @@
 		FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF092B5F26500AD700D55A89 /* FoodCell.swift */; };
 		FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF38FDB8265018E600CCD911 /* UserPreferences.swift */; };
 		FF59C9B326507468005B14CA /* FoodListRemoteDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF59C9B226507468005B14CA /* FoodListRemoteDataManager.swift */; };
-		FF621E9F26507C6500F32B72 /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF621E9E26507C6500F32B72 /* MealModel.swift */; };
 		FF621EA22651223500F32B72 /* FoodListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF621EA12651223500F32B72 /* FoodListInteractor.swift */; };
+		FFBC5B85265433E300D086CB /* FoodListLocalDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5B84265433E300D086CB /* FoodListLocalDataManager.swift */; };
+		FFBC5B882654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5B862654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld */; };
+		FFBC5B97265447DF00D086CB /* MealModel+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */; };
+		FFBC5B98265447DF00D086CB /* MealModel+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */; };
+		FFBC5B9A26544DA900D086CB /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBC5B9926544DA900D086CB /* CoreDataStack.swift */; };
 		FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B81264F97F100ABF751 /* AppDelegate.swift */; };
 		FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48B83264F97F100ABF751 /* SceneDelegate.swift */; };
 		FFD48B89264F97F100ABF751 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FFD48B87264F97F100ABF751 /* Main.storyboard */; };
@@ -37,8 +41,12 @@
 		FF092B5F26500AD700D55A89 /* FoodCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodCell.swift; sourceTree = "<group>"; };
 		FF38FDB8265018E600CCD911 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		FF59C9B226507468005B14CA /* FoodListRemoteDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListRemoteDataManager.swift; sourceTree = "<group>"; };
-		FF621E9E26507C6500F32B72 /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
 		FF621EA12651223500F32B72 /* FoodListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListInteractor.swift; sourceTree = "<group>"; };
+		FFBC5B84265433E300D086CB /* FoodListLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListLocalDataManager.swift; sourceTree = "<group>"; };
+		FFBC5B872654394000D086CB /* FoodDeliveryDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodDeliveryDataModel.xcdatamodel; sourceTree = "<group>"; };
+		FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		FFBC5B9926544DA900D086CB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FFD48B7E264F97F100ABF751 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD48B81264F97F100ABF751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FFD48B83264F97F100ABF751 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +112,14 @@
 			path = Remote;
 			sourceTree = "<group>";
 		};
+		FFBC5B83265433D000D086CB /* Local */ = {
+			isa = PBXGroup;
+			children = (
+				FFBC5B84265433E300D086CB /* FoodListLocalDataManager.swift */,
+			);
+			path = Local;
+			sourceTree = "<group>";
+		};
 		FFD48B75264F97F100ABF751 = {
 			isa = PBXGroup;
 			children = (
@@ -134,6 +150,8 @@
 				FFD48B8C264F97F200ABF751 /* LaunchScreen.storyboard */,
 				FFD48B8F264F97F200ABF751 /* Info.plist */,
 				FF38FDB8265018E600CCD911 /* UserPreferences.swift */,
+				FFBC5B862654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld */,
+				FFBC5B9926544DA900D086CB /* CoreDataStack.swift */,
 			);
 			path = FoodDelivery;
 			sourceTree = "<group>";
@@ -154,7 +172,8 @@
 		FFD48B97264FADDF00ABF751 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				FF621E9E26507C6500F32B72 /* MealModel.swift */,
+				FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */,
+				FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */,
 				FFDF26A62651479000C768BF /* MealModelShowed.swift */,
 			);
 			path = Entities;
@@ -163,6 +182,7 @@
 		FFD48B98264FADFF00ABF751 /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				FFBC5B83265433D000D086CB /* Local */,
 				FF59C9B1265073C0005B14CA /* Remote */,
 			);
 			path = "Data Manager";
@@ -344,19 +364,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				FFD48BA6264FB5A300ABF751 /* FoodListView.swift in Sources */,
+				FFBC5B85265433E300D086CB /* FoodListLocalDataManager.swift in Sources */,
 				FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */,
 				FF621EA22651223500F32B72 /* FoodListInteractor.swift in Sources */,
 				FFDF26A72651479000C768BF /* MealModelShowed.swift in Sources */,
 				FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */,
+				FFBC5B882654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld in Sources */,
 				FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */,
 				FF38FDB9265018E600CCD911 /* UserPreferences.swift in Sources */,
 				FFD48BA9264FB91400ABF751 /* FoodListPresenter.swift in Sources */,
+				FFBC5B98265447DF00D086CB /* MealModel+CoreDataProperties.swift in Sources */,
 				FFD48BAC264FBDAA00ABF751 /* BannerView.swift in Sources */,
 				FFD48BAF264FBDC100ABF751 /* CategoriesView.swift in Sources */,
 				FFD48BB2264FBDD400ABF751 /* FoodView.swift in Sources */,
 				FF59C9B326507468005B14CA /* FoodListRemoteDataManager.swift in Sources */,
-				FF621E9F26507C6500F32B72 /* MealModel.swift in Sources */,
 				FFD48B84264F97F100ABF751 /* SceneDelegate.swift in Sources */,
+				FFBC5B9A26544DA900D086CB /* CoreDataStack.swift in Sources */,
+				FFBC5B97265447DF00D086CB /* MealModel+CoreDataClass.swift in Sources */,
 				FFD48B9F264FAEAE00ABF751 /* FoodListProtocols.swift in Sources */,
 				FFD48BA3264FAF8D00ABF751 /* FoodListRouter.swift in Sources */,
 				FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */,
@@ -563,6 +587,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		FFBC5B862654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				FFBC5B872654394000D086CB /* FoodDeliveryDataModel.xcdatamodel */,
+			);
+			currentVersion = FFBC5B872654394000D086CB /* FoodDeliveryDataModel.xcdatamodel */;
+			path = FoodDeliveryDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = FFD48B76264F97F100ABF751 /* Project object */;
 }

@@ -17,6 +17,7 @@ class FoodListRouter: FooldListRouterProtocol {
             let presenter: FoodListPresenterProtocol & FoodListInteractorOutputProtocol = FoodListPresenter()
             let interactor: FoodListInteractorInputProtocol & FoodListRemoteDataManagerOutputProtocol = FoodListInteractor()
             let remoteDataManager: FoodListRemoteDataManagerInputProtocol = FoodListRemoteDataManager()
+            let localDataManager: FoodListLocalDataManagerInputProtocol = FoodListLocalDataManager()
             
             
             view.presenter = presenter
@@ -25,6 +26,7 @@ class FoodListRouter: FooldListRouterProtocol {
             presenter.interactor = interactor
             interactor.presenter = presenter
             interactor.remoteDataManager = remoteDataManager
+            interactor.localDataManager = localDataManager
             remoteDataManager.remoteRequestHandler = interactor
             
             return navigationController

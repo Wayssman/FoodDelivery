@@ -34,6 +34,7 @@ protocol FoodListPresenterProtocol: AnyObject {
 protocol FoodListInteractorInputProtocol: AnyObject {
     var presenter: FoodListInteractorOutputProtocol? { get set }
     var remoteDataManager: FoodListRemoteDataManagerInputProtocol? { get set }
+    var localDataManager: FoodListLocalDataManagerInputProtocol? { get set }
     
     // Запрос от Presenter к Interactor
     func getFoodList()
@@ -56,4 +57,10 @@ protocol FoodListRemoteDataManagerOutputProtocol: AnyObject {
     // Ответ от DataManager к Interactor
     func onFoodReceived(_ meals: [MealModel])
     func onError()
+}
+
+protocol FoodListLocalDataManagerInputProtocol: AnyObject {
+    // Запрос от Interactor к LocalDataManager
+    func getMeal() throws -> [MealModel]
+    func saveMeal(networkMeal: MealModel) throws
 }

@@ -20,9 +20,11 @@ class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
         // Для примера грузим все блюда на букву 'c'
         urlConstructor.queryItems = [URLQueryItem(name: "f", value: "e")]
         
+        let decoder = JSONDecoder(context: CoreDataStack.managedObjectContext!)
+        
         AF.request(urlConstructor.url!)
             .validate()
-            .responseDecodable(of: MealResponse.self) { response in
+            .responseDecodable(of: MealResponse.self, decoder: decoder) { response in
                 switch response.result {
                 case .success(let result):
                     self.remoteRequestHandler?.onFoodReceived(result.meals ?? [])
