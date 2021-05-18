@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
+#platform :ios, '9.0'
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -14,8 +14,7 @@ target 'FoodDelivery' do
   use_frameworks!
 
   # Pods for FoodDelivery
-  pod 'Alamofire'
+  pod 'Alamofire', '~> 5.2'
   pod 'AlamofireImage'
-  pod 'PKHUD'
 
 end
