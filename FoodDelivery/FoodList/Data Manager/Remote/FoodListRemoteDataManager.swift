@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireObjectMapper
 
 class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
     
@@ -21,14 +20,21 @@ class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
         // Для примера грузим все блюда на букву 'c'
         urlConstructor.queryItems = [URLQueryItem(name: "f", value: "e")]
         
-        Alamofire
-            .request(urlConstructor.url!)
+        Alamofire.request(urlConstructor.url!)
             .validate()
-            .responseObject(completionHandler: { (response: DataResponse<MealResponse>) in
+            .responseData(completionHandler: { response in
                 switch response.result {
-                case .success(let response):
-                    self.remoteRequestHandler?.onFoodReceived(response.meals ?? [])
-                case .failure(_): // Отсюда можно распарсить и пробросить ошибки
+                case .success(let data):
+                    let decoder = JSONDecoder()
+                    do {
+                        let result = try decoder.decode(MealResponse.self, from: data)
+                        self.remoteRequestHandler?.onFoodReceived(result.meals ?? [])
+                    } catch {
+                        // Можно распарсить ошибку декодинга
+                        self.remoteRequestHandler?.onError()
+                    }
+                case .failure(_):
+                    // Можно распарсить ошибку сети
                     self.remoteRequestHandler?.onError()
                 }
             })
