@@ -20,24 +20,16 @@ class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
         // Для примера грузим все блюда на букву 'c'
         urlConstructor.queryItems = [URLQueryItem(name: "f", value: "e")]
         
-        Alamofire.request(urlConstructor.url!)
+        AF.request(urlConstructor.url!)
             .validate()
-            .responseData(completionHandler: { response in
+            .responseDecodable(of: MealResponse.self) { response in
                 switch response.result {
-                case .success(let data):
-                    let decoder = JSONDecoder()
-                    do {
-                        let result = try decoder.decode(MealResponse.self, from: data)
-                        self.remoteRequestHandler?.onFoodReceived(result.meals ?? [])
-                    } catch {
-                        // Можно распарсить ошибку декодинга
-                        self.remoteRequestHandler?.onError()
-                    }
+                case .success(let result):
+                    self.remoteRequestHandler?.onFoodReceived(result.meals ?? [])
                 case .failure(_):
-                    // Можно распарсить ошибку сети
                     self.remoteRequestHandler?.onError()
                 }
-            })
+            }
     }
 }
 
