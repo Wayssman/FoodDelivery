@@ -29,15 +29,22 @@ class FoodListView: UIViewController {
     private let maskLayer = CAShapeLayer()
     
     private var lock = false
+    private var startPos: CGFloat = 0.0
+    private var shift: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         presenter?.viewDidLoad()
         
-        // Скроллить будем весь экран и таблицу отдельно
-        scrollView.delegate = self
-        scrollView.isScrollEnabled = true
+        
+        
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
+        scrollView.addGestureRecognizer(panGestureRecognizer)
+        
+        scrollView.isScrollEnabled = false
+        
+        // Отслеживаем прокрутку ячеек таблицы
         foodViewController.tableView.delegate = self
         foodViewController.tableView.isScrollEnabled = false
         
@@ -77,52 +84,67 @@ class FoodListView: UIViewController {
         let category = foodViewController.foodList[row].category
         categoriesViewController.processActiveCategory(name: category)
     }
-}
-
-extension FoodListView: UITableViewDelegate, UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let screenHeight = UIScreen.main.bounds.height
+    
+    @objc func onPan(recognizer: UIPanGestureRecognizer) {
+        let bannerHeight = bannerView.frame.height
         
-        if scrollView == self.scrollView {
-            if scrollView.contentOffset.y >= bannerView.frame.height {
-                // Останавливаем скролл на этом месте
-                scrollView.contentOffset.y = bannerView.frame.height
-                scrollView.isScrollEnabled = false
-                // Таблица занимает все место на экране, кроме места для категорий
-                self.foodViewHeight.constant = screenHeight - categoriesView.frame.height
-                self.foodViewController.tableView.isScrollEnabled = true
-                // Меняем внешний вид
-                self.categoriesView.layer.shadowOpacity = 1
-                foodView.layer.mask = nil
+        switch recognizer.state {
+        case .began:
+            if scrollView.contentOffset.y < bannerHeight {
+                startPos = scrollView.contentOffset.y
+                shift = bannerHeight
             } else {
+                startPos = foodViewController.tableView.contentOffset.y
+                shift = 0
+            }
+        case .changed:
+            // BannerView
+            if startPos - recognizer.translation(in: scrollView).y < bannerHeight {
+                if startPos - recognizer.translation(in: scrollView).y >= 0 {
+                    scrollView.contentOffset.y = startPos - recognizer.translation(in: scrollView).y
+                } else {
+                    scrollView.contentOffset.y = 0
+                }
+            } else {
+                scrollView.contentOffset.y = bannerHeight
+                // Меняем внешний вид
+                categoriesView.layer.shadowOpacity = 1
+                foodView.layer.mask = nil
+            }
+            
+            // TableView
+            if startPos - shift - recognizer.translation(in: scrollView).y > 0 {
+                let contentHeight = foodViewController.tableView.rowHeight * CGFloat(foodViewController.foodList.count)
+                let visibleHeight = foodViewController.tableView.visibleSize.height
+                
+                if startPos - shift - recognizer.translation(in: scrollView).y <= contentHeight - visibleHeight {
+                    foodViewController.tableView.contentOffset.y = startPos - shift - recognizer.translation(in: scrollView).y
+                } else {
+                    foodViewController.tableView.contentOffset.y = contentHeight - visibleHeight
+                }
+            } else {
+                foodViewController.tableView.contentOffset.y = 0
                 // Меняем внешний вид обратно
                 self.categoriesView.layer.shadowOpacity = 0
                 foodView.layer.mask = maskLayer
             }
+        default: break
         }
-        
-        if scrollView == self.foodViewController.tableView {
-            if scrollView.contentOffset.y <= 0 {
-                // Останавливаем скролл
-                scrollView.contentOffset.y = 0
-                scrollView.isScrollEnabled = false
-                // Растягиваем таблицу, чтобы было куда скроллить главный экран
-                self.foodViewHeight.constant = 800
-                self.scrollView.isScrollEnabled = true
-            }
-            // Определяем верхнюю ячейку, если скролл не занят действием переключения между категориями
-            if lock == false {
-                let row = self.foodViewController.tableView.indexPathsForVisibleRows?[0].row ?? 0
-                processTopCell(row: row)
-            }
+    }
+}
+
+extension FoodListView: UITableViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Определяем верхнюю ячейку, если скролл не занят действием переключения между категориями
+        if lock == false {
+            let row = self.foodViewController.tableView.indexPathsForVisibleRows?[0].row ?? 0
+            processTopCell(row: row)
         }
     }
     
     func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        if scrollView == self.foodViewController.tableView {
-            // Запускаем отслеживание после анимации
-            lock = false
-        }
+        // Запускаем отслеживание после анимации
+        lock = false
     }
 }
 
