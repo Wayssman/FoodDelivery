@@ -44,8 +44,8 @@
 		FF621EA12651223500F32B72 /* FoodListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListInteractor.swift; sourceTree = "<group>"; };
 		FFBC5B84265433E300D086CB /* FoodListLocalDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListLocalDataManager.swift; sourceTree = "<group>"; };
 		FFBC5B872654394000D086CB /* FoodDeliveryDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FoodDeliveryDataModel.xcdatamodel; sourceTree = "<group>"; };
-		FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealModel+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
-		FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MealModel+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MealModel+CoreDataClass.swift"; path = "/Users/zhelanovav/Desktop/FoodDelivery/FoodDelivery/FoodDelivery/Entities/MealModel+CoreDataClass.swift"; sourceTree = "<absolute>"; };
+		FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "MealModel+CoreDataProperties.swift"; path = "/Users/zhelanovav/Desktop/FoodDelivery/FoodDelivery/FoodDelivery/Entities/MealModel+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		FFBC5B9926544DA900D086CB /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		FFD48B7E264F97F100ABF751 /* FoodDelivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodDelivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFD48B81264F97F100ABF751 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
