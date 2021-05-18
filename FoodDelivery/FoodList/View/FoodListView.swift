@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import PKHUD
 
 class FoodListView: UIViewController {
     
@@ -37,11 +36,8 @@ class FoodListView: UIViewController {
         
         presenter?.viewDidLoad()
         
-        
-        
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         scrollView.addGestureRecognizer(panGestureRecognizer)
-        
         scrollView.isScrollEnabled = false
         
         // Отслеживаем прокрутку ячеек таблицы
@@ -170,14 +166,31 @@ extension FoodListView: FoodListViewProtocol {
     }
     
     func showError() {
-        HUD.flash(.label("Ошибка при загрузке данных!"), delay: 2.0)
+        // Можно вывести ошибку пользователю
+        let message = UIAlertController(title: nil, message: "Ошибка сети", preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ок", style: .cancel, handler: nil)
+        message.addAction(action)
+        self.navigationController?.present(message, animated: true, completion: nil)
     }
     
     func showLoading() {
-        HUD.show(.progress)
+        let message = UIAlertController(title: "Загрузка...", message: nil, preferredStyle: .alert)
+        
+        let activity = UIActivityIndicatorView()
+        activity.startAnimating()
+        
+        message.view.addSubview(activity)
+        activity.translatesAutoresizingMaskIntoConstraints = false
+        activity.centerYAnchor.constraint(equalTo: message.view.centerYAnchor).isActive = true
+        activity.leadingAnchor.constraint(equalTo: message.view.leadingAnchor, constant: 20).isActive = true
+        
+        
+        self.navigationController?.present(message, animated: true, completion: nil)
     }
     
     func hideLoading() {
-        HUD.hide()
+        if let message = self.navigationController?.presentedViewController as? UIAlertController {
+            message.dismiss(animated: true, completion: nil)
+        }
     }
 }

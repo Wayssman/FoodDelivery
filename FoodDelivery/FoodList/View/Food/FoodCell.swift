@@ -42,6 +42,6 @@ class FoodCell: UITableViewCell {
         
         let url = URL(string: meal.preview)!
         let placeholder = UIImage(named: "placeholder")
-        preview?.af_setImage(withURL: url, placeholderImage: placeholder)
+        preview?.af.setImage(withURL: url, placeholderImage: placeholder)
     }
 }
