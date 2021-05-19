@@ -28,8 +28,23 @@ class FoodListView: UIViewController {
     private let maskLayer = CAShapeLayer()
     
     private var lock = false
-    private var startPos: CGFloat = 0.0
-    private var shift: CGFloat = 0.0
+    
+    private var tableStartPos: CGFloat = 0.0
+    private var viewStartPos: CGFloat = 0.0
+    private var trigger: Bool = true {
+        didSet {
+            // Меняем внешний вид
+            if trigger {
+                self.categoriesView.layer.shadowOpacity = 0
+                foodView.layer.mask = maskLayer
+            } else {
+                categoriesView.layer.shadowOpacity = 1
+                foodView.layer.mask = nil
+            }
+        }
+    }
+    var tableShift: CGFloat = 0.0
+    var viewShift: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,43 +101,48 @@ class FoodListView: UIViewController {
         
         switch recognizer.state {
         case .began:
-            if scrollView.contentOffset.y < bannerHeight {
-                startPos = scrollView.contentOffset.y
-                shift = bannerHeight
+            viewStartPos = scrollView.contentOffset.y
+            tableStartPos = foodViewController.tableView.contentOffset.y
+            // Сдвиги, если скролл был начат в одном ScrollView, а закончен в другом
+            if trigger {
+                tableShift = bannerHeight
+                viewShift = 0
             } else {
-                startPos = foodViewController.tableView.contentOffset.y
-                shift = 0
+                tableShift = 0
+                viewShift = tableStartPos
             }
         case .changed:
             // BannerView
-            if startPos - recognizer.translation(in: scrollView).y < bannerHeight {
-                if startPos - recognizer.translation(in: scrollView).y >= 0 {
-                    scrollView.contentOffset.y = startPos - recognizer.translation(in: scrollView).y
+            if trigger {
+                if viewStartPos + viewShift - recognizer.translation(in: scrollView).y < bannerHeight {
+                    if viewStartPos + viewShift - recognizer.translation(in: scrollView).y >= 0 {
+                        scrollView.contentOffset.y = viewStartPos + viewShift - recognizer.translation(in: scrollView).y
+                    } else {
+                        scrollView.contentOffset.y = 0
+                    }
                 } else {
-                    scrollView.contentOffset.y = 0
+                    scrollView.contentOffset.y = bannerHeight
+                    // Состояние
+                    trigger = false
                 }
-            } else {
-                scrollView.contentOffset.y = bannerHeight
-                // Меняем внешний вид
-                categoriesView.layer.shadowOpacity = 1
-                foodView.layer.mask = nil
             }
             
             // TableView
-            if startPos - shift - recognizer.translation(in: scrollView).y > 0 {
-                let contentHeight = foodViewController.tableView.rowHeight * CGFloat(foodViewController.foodList.count)
-                let visibleHeight = foodViewController.tableView.visibleSize.height
-                
-                if startPos - shift - recognizer.translation(in: scrollView).y <= contentHeight - visibleHeight {
-                    foodViewController.tableView.contentOffset.y = startPos - shift - recognizer.translation(in: scrollView).y
+            if !trigger {
+                if tableStartPos - tableShift - recognizer.translation(in: scrollView).y > 0 {
+                    let contentHeight = foodViewController.tableView.rowHeight * CGFloat(foodViewController.foodList.count)
+                    let visibleHeight = foodViewController.tableView.visibleSize.height
+                    
+                    if tableStartPos - tableShift - recognizer.translation(in: scrollView).y <= contentHeight - visibleHeight {
+                        foodViewController.tableView.contentOffset.y = tableStartPos - tableShift - recognizer.translation(in: scrollView).y
+                    } else {
+                        foodViewController.tableView.contentOffset.y = contentHeight - visibleHeight
+                    }
                 } else {
-                    foodViewController.tableView.contentOffset.y = contentHeight - visibleHeight
+                    foodViewController.tableView.contentOffset.y = 0
+                    // Меняем состояние
+                    trigger = true
                 }
-            } else {
-                foodViewController.tableView.contentOffset.y = 0
-                // Меняем внешний вид обратно
-                self.categoriesView.layer.shadowOpacity = 0
-                foodView.layer.mask = maskLayer
             }
         default: break
         }
@@ -137,20 +157,22 @@ extension FoodListView: UITableViewDelegate {
             processTopCell(row: row)
         }
     }
-    
-    func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
-        // Запускаем отслеживание после анимации
-        lock = false
-    }
 }
 
 extension FoodListView: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         categoriesViewController.setActiveCategory(index: indexPath.item)
         
-        let categoryName = categoriesViewController.categoryList[indexPath.item]
+        scrollView.setContentOffset(CGPoint(x: 0, y: bannerView.frame.height), animated: true)
+        trigger = false
+        
         lock = true
+        let categoryName = categoriesViewController.categoryList[indexPath.item]
         foodViewController.processActiveCategory(name: categoryName)
+        // Даем время на анимацию и разблокируем скролл
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: { [weak self] in
+            self?.lock = false
+        })
     }
 }
 
