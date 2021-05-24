@@ -3,6 +3,8 @@ In progress...
 
 Приложение для показа блюд из каталога (VIPER, Alamofire, кэширование CoreData)
 
+API - https://www.themealdb.com/api.php
+
 Планы:
 Создать еще несколько модулей VIPER для детального просмотра товара и т.д.
 
