@@ -7,6 +7,6 @@ In progress...
 Создать еще несколько модулей VIPER для детального просмотра товара и т.д.
 
 <p float="left">
-  <img src="/https://github.com/Wayssman/Wayssman/blob/main/FoodDelivery1.png" width="100" />
-  <img src="https://github.com/Wayssman/Wayssman/blob/main/FoodDelivery1.png" width="100" /> 
+  <img src="/https://github.com/Wayssman/Wayssman/blob/main/FoodDelivery1.png" width="425" />
+  <img src="https://github.com/Wayssman/Wayssman/blob/main/FoodDelivery2.png" width="425" /> 
 </p>
