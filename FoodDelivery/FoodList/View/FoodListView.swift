@@ -43,8 +43,8 @@ class FoodListView: UIViewController {
             }
         }
     }
-    var tableShift: CGFloat = 0.0
-    var viewShift: CGFloat = 0.0
+    private var tableShift: CGFloat = 0.0
+    private var viewShift: CGFloat = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +58,7 @@ class FoodListView: UIViewController {
         // Отслеживаем прокрутку ячеек таблицы
         foodViewController.tableView.delegate = self
         foodViewController.tableView.isScrollEnabled = false
+        foodViewController.tableView.allowsSelection = true
         
         // Отслеживаем нажатия по subview
         categoriesViewController.collectionView.delegate = self
@@ -150,6 +151,7 @@ class FoodListView: UIViewController {
 }
 
 extension FoodListView: UITableViewDelegate {
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // Определяем верхнюю ячейку, если скролл не занят действием переключения между категориями
         if lock == false {
@@ -157,9 +159,15 @@ extension FoodListView: UITableViewDelegate {
             processTopCell(row: row)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meal = foodViewController.foodList[indexPath.row]
+        presenter?.showRecipe(forMeal: meal)
+    }
 }
 
 extension FoodListView: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         categoriesViewController.setActiveCategory(index: indexPath.item)
         
@@ -177,6 +185,7 @@ extension FoodListView: UICollectionViewDelegate {
 }
 
 extension FoodListView: FoodListViewProtocol {
+    
     func showFood(meals: [MealModelShowed]) {
         foodViewController.foodList = meals
         foodViewController.tableView.reloadData()

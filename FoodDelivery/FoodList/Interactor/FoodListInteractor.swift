@@ -6,6 +6,7 @@
 //
 
 class FoodListInteractor: FoodListInteractorInputProtocol {
+    
     weak var presenter: FoodListInteractorOutputProtocol?
     var remoteDataManager: FoodListRemoteDataManagerInputProtocol?
     var localDataManager: FoodListLocalDataManagerInputProtocol?
@@ -29,6 +30,7 @@ class FoodListInteractor: FoodListInteractorInputProtocol {
 }
 
 extension FoodListInteractor: FoodListRemoteDataManagerOutputProtocol {
+    
     func onFoodReceived(_ meals: [MealModel]) {
         presenter?.didRecieveFood(meals)
         

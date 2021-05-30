@@ -9,6 +9,9 @@ import UIKit
 
 protocol FooldListRouterProtocol: AnyObject {
     static func createFoodListModule() -> UIViewController
+    
+    // Запрос от Presenter к Router
+    func presentRecipeScreen(from view: FoodListViewProtocol, forMeal meal: MealModelShowed)
 }
 
 protocol FoodListViewProtocol: AnyObject {
@@ -29,6 +32,7 @@ protocol FoodListPresenterProtocol: AnyObject {
     
     // Уведомление от View к Presenter
     func viewDidLoad()
+    func showRecipe(forMeal meal: MealModelShowed)
 }
 
 protocol FoodListInteractorInputProtocol: AnyObject {
