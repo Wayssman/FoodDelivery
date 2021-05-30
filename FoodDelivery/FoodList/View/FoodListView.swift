@@ -49,8 +49,6 @@ class FoodListView: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter?.viewDidLoad()
-        
         let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(onPan))
         scrollView.addGestureRecognizer(panGestureRecognizer)
         scrollView.isScrollEnabled = false
@@ -70,12 +68,14 @@ class FoodListView: UIViewController {
         // Подготавливаем тень
         categoriesView.layer.shadowColor = UserPreferences.shadowColor.cgColor
         categoriesView.layer.shadowOpacity = 0
-        categoriesView.layer.shadowOffset = .zero
-        categoriesView.layer.shadowRadius = 14
+        categoriesView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        categoriesView.layer.shadowRadius = 10
         
         // Подготавливаем скругление углов
         maskLayer.path = path.cgPath
         foodView.layer.mask = maskLayer
+        
+        presenter?.viewDidLoad()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
