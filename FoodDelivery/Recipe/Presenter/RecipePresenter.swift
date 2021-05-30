@@ -17,7 +17,8 @@ class RecipePresenter: RecipePresenterProtocol {
         view?.showRecipe(forMeal: meal!)
     }
     
-    func dismissRecipe() {
+    
+    @objc func dismissRecipe() {
         router?.dismissRecipeScreen(from: view!)
     }
 }

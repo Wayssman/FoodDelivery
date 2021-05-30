@@ -14,6 +14,7 @@ struct MealResponse: Decodable {
 }
 
 public class MealModel: NSManagedObject, Decodable {
+    
     enum CodingKeys: String, CodingKey {
         case name = "strMeal"
         case category = "strCategory"
@@ -29,6 +30,7 @@ public class MealModel: NSManagedObject, Decodable {
         guard let context = decoder.userInfo[.context] as? NSManagedObjectContext else { fatalError("NSManagedObjectContext is missing") }
         let entity = NSEntityDescription.entity(forEntityName: "MealModel", in: context)!
         self.init(entity: entity, insertInto: context)
+        
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         category = try values.decode(String.self, forKey: .category)
@@ -46,6 +48,7 @@ extension CodingUserInfoKey {
 }
 
 extension JSONDecoder {
+    
     convenience init(context: NSManagedObjectContext) {
         self.init()
         self.userInfo[.context] = context
