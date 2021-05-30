@@ -6,6 +6,7 @@
 //
 
 class FoodListPresenter: FoodListPresenterProtocol {
+    
     weak var view: FoodListViewProtocol?
     var router: FooldListRouterProtocol?
     var interactor: FoodListInteractorInputProtocol?
@@ -14,9 +15,14 @@ class FoodListPresenter: FoodListPresenterProtocol {
         view?.showLoading()
         interactor?.getFoodList()
     }
+    
+    func showRecipe(forMeal meal: MealModelShowed) {
+        router?.presentRecipeScreen(from: view!, forMeal: meal)
+    }
 }
 
 extension FoodListPresenter: FoodListInteractorOutputProtocol {
+    
     func didRecieveFood(_ meals: [MealModel]) {
         view?.hideLoading()
         
@@ -34,6 +40,4 @@ extension FoodListPresenter: FoodListInteractorOutputProtocol {
         view?.hideLoading()
         view?.showError()
     }
-    
-    
 }

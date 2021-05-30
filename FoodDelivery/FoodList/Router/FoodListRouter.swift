@@ -34,4 +34,12 @@ class FoodListRouter: FooldListRouterProtocol {
         
         return UIViewController()
     }
+    
+    func presentRecipeScreen(from view: FoodListViewProtocol, forMeal meal: MealModelShowed) {
+        let recipeViewController = RecipeRouter.createRecipeModule(forMeal: meal)
+        
+        if let sourceView = view as? UIViewController {
+            sourceView.navigationController?.pushViewController(recipeViewController, animated: true)
+        }
+    }
 }

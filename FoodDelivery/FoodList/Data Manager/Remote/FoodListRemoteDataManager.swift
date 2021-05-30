@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class FoodListRemoteDataManager: FoodListRemoteDataManagerInputProtocol {
-    
+
     var remoteRequestHandler: FoodListRemoteDataManagerOutputProtocol?
     
     func getFoodList() {
