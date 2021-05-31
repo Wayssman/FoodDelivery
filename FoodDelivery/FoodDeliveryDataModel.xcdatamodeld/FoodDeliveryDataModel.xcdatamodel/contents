@@ -7,10 +7,26 @@
         <attribute name="ingredient3" optional="YES" attributeType="String"/>
         <attribute name="ingredient4" optional="YES" attributeType="String"/>
         <attribute name="ingredient5" optional="YES" attributeType="String"/>
+        <attribute name="ingredient6" optional="YES" attributeType="String"/>
+        <attribute name="ingredient7" optional="YES" attributeType="String"/>
+        <attribute name="ingredient8" optional="YES" attributeType="String"/>
+        <attribute name="ingredient9" optional="YES" attributeType="String"/>
+        <attribute name="ingredient10" optional="YES" attributeType="String"/>
+        <attribute name="ingredient11" optional="YES" attributeType="String"/>
+        <attribute name="ingredient12" optional="YES" attributeType="String"/>
+        <attribute name="ingredient13" optional="YES" attributeType="String"/>
+        <attribute name="ingredient14" optional="YES" attributeType="String"/>
+        <attribute name="ingredient15" optional="YES" attributeType="String"/>
+        <attribute name="ingredient16" optional="YES" attributeType="String"/>
+        <attribute name="ingredient17" optional="YES" attributeType="String"/>
+        <attribute name="ingredient18" optional="YES" attributeType="String"/>
+        <attribute name="ingredient19" optional="YES" attributeType="String"/>
+        <attribute name="ingredient20" optional="YES" attributeType="String"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="preview" optional="YES" attributeType="String"/>
+        <attribute name="recipe" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="MealModel" positionX="-54" positionY="-9" width="128" height="149"/>
+        <element name="MealModel" positionX="-54" positionY="-9" width="128" height="389"/>
     </elements>
 </model>

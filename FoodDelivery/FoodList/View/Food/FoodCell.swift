@@ -37,7 +37,8 @@ class FoodCell: UITableViewCell {
     func config(meal: MealModelShowed) {
         titleLabel.text = meal.name
         
-        descriptionLabel.text = meal.ingredients.compactMap{$0}.filter{ $0.count > 0}.joined(separator: ", ")
+        descriptionLabel.text = meal.ingredients.compactMap{$0}.filter{ $0.count > 0 }.enumerated().filter { $0.offset < 5 }.map{ $0.element }.joined(separator: ", ")
+        
         priceButton.setTitle("от 345 р", for: .normal)
         
         let url = URL(string: meal.preview)!
