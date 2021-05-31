@@ -15,10 +15,12 @@ class RecipeView: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var scrollContentView: UIView!
     @IBOutlet weak var previewContainer: UIView!
+    @IBOutlet weak var previewContainerTop: NSLayoutConstraint!
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var ingredientsLabel: UILabel!
+    @IBOutlet weak var recipeLabel: UILabel!
     @IBOutlet weak var contentViewTop: NSLayoutConstraint!
     @IBOutlet weak var backButton: UIButton!
     
@@ -88,9 +90,14 @@ class RecipeView: UIViewController {
         titleLabel.textColor = UserPreferences.textColor
         titleLabel.numberOfLines = 0
         
-        ingredientsLabel.font = .systemFont(ofSize: 24)
+        ingredientsLabel.font = .systemFont(ofSize: 16)
         ingredientsLabel.textColor = UserPreferences.descriptionTextColor
         ingredientsLabel.numberOfLines = 0
+        
+        recipeLabel.font = .systemFont(ofSize: 18)
+        recipeLabel.textColor = UserPreferences.textColor
+        recipeLabel.textAlignment = .justified
+        recipeLabel.numberOfLines = 0
         
         // Форма backButton
         backButton.layer.cornerRadius = backButton.bounds.height / 2
@@ -99,8 +106,6 @@ class RecipeView: UIViewController {
         
         backButton.backgroundColor = UserPreferences.selectedButtonColor
         backButton.imageView?.tintColor = UserPreferences.selectedButtonTextColor
-        backButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        
         backButton.addTarget(self, action: #selector(exitRecipe), for: .touchUpInside)
         
         presenter?.viewDidLoad()
@@ -122,8 +127,14 @@ class RecipeView: UIViewController {
 extension RecipeView: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        view.layoutIfNeeded()
         // Тень и форма contentView динамически подстраиваются
-        let path = UIBezierPath(roundedRect: contentView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20))
+        let screenHeight = UIScreen.main.bounds.height
+        let heightAvalible = screenHeight - (previewContainerTop.constant + previewContainer.bounds.height / 2)
+        var rectAvalible = CGRect(x: contentView.bounds.minX, y: contentView.bounds.minY, width: contentView.bounds.width, height: heightAvalible)
+        rectAvalible = contentView.bounds.height > heightAvalible ? contentView.bounds : rectAvalible
+        
+        let path = UIBezierPath(roundedRect: rectAvalible, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20))
         let cornerMaskLayer = CAShapeLayer()
         cornerMaskLayer.path = path.cgPath
         cornerMaskLayer.fillColor = UIColor.white.cgColor
@@ -159,18 +170,8 @@ extension RecipeView: RecipeViewProtocol {
     
     func showRecipe(forMeal: MealModelShowed) {
         titleLabel?.text = forMeal.name
-        ingredientsLabel?.text = forMeal.ingredients.enumerated().map { element -> String in
-            if let ingredient = element.element {
-                let str = "\(element.offset + 1). \(ingredient)\n"
-                return str
-            } else {
-                return ""
-            }
-        }.joined()
-        
-        ingredientsLabel?.text! += (ingredientsLabel?.text)!
-        ingredientsLabel?.text! += (ingredientsLabel?.text)!
-        
+        ingredientsLabel?.text = forMeal.ingredients.compactMap{$0}.filter{ $0.count > 0 }.enumerated().map { "\($0.offset + 1). \($0.element)\n" }.joined()
+        recipeLabel?.text = forMeal.recipe
         preview.af.setImage(withURL: URL(string: forMeal.preview)!)
     }
 }

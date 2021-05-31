@@ -11,5 +11,6 @@ struct MealModelShowed {
     var name: String = ""
     var category: String = ""
     var preview: String = ""
+    var recipe = ""
     var ingredients: [String?] = []
 }
