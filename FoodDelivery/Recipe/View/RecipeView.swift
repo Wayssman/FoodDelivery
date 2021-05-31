@@ -22,7 +22,40 @@ class RecipeView: UIViewController {
     @IBOutlet weak var contentViewTop: NSLayoutConstraint!
     @IBOutlet weak var backButton: UIButton!
     
-    private var animator: UIViewPropertyAnimator!
+    private var previewMode: Bool = false {
+        didSet {
+            // Считаем размеры View, куда впишем маску
+            let newEdge = preview.bounds.width * sqrt(2)
+            let shift = newEdge / 2 - preview.bounds.width / 2
+            let newRect = CGRect(x: preview.bounds.minX - shift, y: preview.bounds.minY - shift, width: newEdge, height: newEdge)
+            
+            // Заготавливаем cgPaths
+            let smallOval = UIBezierPath(ovalIn: preview.bounds).cgPath
+            let bigOval = UIBezierPath(ovalIn: newRect).cgPath
+            let corners = UIBezierPath(roundedRect: preview.bounds, cornerRadius: 20).cgPath
+            var endPath: CGPath?
+            
+            let maskAnimation = CABasicAnimation(keyPath: "path")
+            maskAnimation.delegate = self // Отслеживаем окончание анимации
+            maskAnimation.duration = 0.25
+            maskAnimation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+            
+            previewContainer.layer.shadowOpacity = 0
+            
+            if previewMode {
+                maskAnimation.fromValue = smallOval
+                maskAnimation.toValue = bigOval
+                endPath = corners
+            } else {
+                maskAnimation.fromValue = bigOval
+                maskAnimation.toValue = smallOval
+                endPath = smallOval
+            }
+            preview.layer.mask?.add(maskAnimation, forKey: "path")
+            (preview.layer.mask as? CAShapeLayer)?.path = endPath
+            previewContainer.layer.shadowPath = endPath
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,21 +66,6 @@ class RecipeView: UIViewController {
         view.backgroundColor = UserPreferences.mainBackgroundColor
         scrollContentView.backgroundColor = UserPreferences.mainBackgroundColor
         
-        // Тень и форма contentView
-        let path = UIBezierPath(roundedRect: contentView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20))
-        let cornerMaskLayer = CAShapeLayer()
-        cornerMaskLayer.path = path.cgPath
-        cornerMaskLayer.fillColor = UIColor.white.cgColor
-        
-        cornerMaskLayer.shadowColor = UserPreferences.shadowColor.cgColor
-        cornerMaskLayer.shadowPath = cornerMaskLayer.path
-        cornerMaskLayer.shadowOffset = CGSize(width: 0, height: 1)
-        cornerMaskLayer.shadowOpacity = 1
-        cornerMaskLayer.shadowRadius = 10
-        
-        contentView.layer.backgroundColor = .none
-        contentView.layer.insertSublayer(cornerMaskLayer, at: 0)
-        
         // Тень previewContainer
         previewContainer.backgroundColor = .none
         previewContainer.layer.shadowColor = UIColor.black.cgColor
@@ -57,9 +75,7 @@ class RecipeView: UIViewController {
         previewContainer.layer.shadowRadius = 5
         
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
-        let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(handlePress(_:)))
         preview.addGestureRecognizer(tapGestureRecognizer)
-        preview.addGestureRecognizer(longPressGestureRecognizer)
         preview.isUserInteractionEnabled = true
         
         // Форма preview
@@ -99,32 +115,14 @@ class RecipeView: UIViewController {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        UIView.animateKeyframes(withDuration: 0.5, delay: 0, options: [], animations: {
-            UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.5, animations: { [weak self] in
-                self?.previewContainer.transform = (self?.previewContainer.transform.scaledBy(x: 0.8, y: 0.8))!
-            })
-            UIView.addKeyframe(withRelativeStartTime: 0.5, relativeDuration: 0.5, animations: { [weak self] in
-                self?.previewContainer.transform = .identity
-            })
-        }, completion: nil)
-    }
-    
-    @objc func handlePress(_ sender: UITapGestureRecognizer) {
-        if sender.state == .began {
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                self?.previewContainer.transform = (self?.previewContainer.transform.scaledBy(x: 0.8, y: 0.8))!
-            })
-        } else if sender.state == .ended {
-            UIView.animate(withDuration: 0.25, animations: { [weak self] in
-                self?.previewContainer.transform = .identity
-            })
-        }
+        previewMode = previewMode ? false : true
     }
 }
 
 extension RecipeView: UIScrollViewDelegate {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Тень и форма contentView динамически подстраиваются
         let path = UIBezierPath(roundedRect: contentView.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: 20, height: 20))
         let cornerMaskLayer = CAShapeLayer()
         cornerMaskLayer.path = path.cgPath
@@ -137,8 +135,23 @@ extension RecipeView: UIScrollViewDelegate {
         cornerMaskLayer.shadowRadius = 10
         
         contentView.layer.backgroundColor = .none
-        contentView.layer.sublayers?.remove(at: 0)
+        if let sublayers = contentView.layer.sublayers {
+            for layer in sublayers {
+                if layer.name == "cornerMaskLayer" {
+                    layer.removeFromSuperlayer()
+                }
+            }
+        }
+        
+        cornerMaskLayer.name = "cornerMaskLayer"
         contentView.layer.insertSublayer(cornerMaskLayer, at: 0)
+    }
+}
+
+extension RecipeView: CAAnimationDelegate {
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        previewContainer.layer.shadowOpacity = 1
     }
 }
 
@@ -154,6 +167,9 @@ extension RecipeView: RecipeViewProtocol {
                 return ""
             }
         }.joined()
+        
+        ingredientsLabel?.text! += (ingredientsLabel?.text)!
+        ingredientsLabel?.text! += (ingredientsLabel?.text)!
         
         preview.af.setImage(withURL: URL(string: forMeal.preview)!)
     }
