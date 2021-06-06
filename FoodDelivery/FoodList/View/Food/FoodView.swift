@@ -11,7 +11,7 @@ class FoodView: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var foodList: [MealModelShowed] = []
+    var foodList: [MealObject] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

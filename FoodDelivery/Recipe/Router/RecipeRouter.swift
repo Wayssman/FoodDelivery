@@ -8,7 +8,7 @@
 import UIKit
 
 class RecipeRouter: RecipeRouterProtocol {
-    static func createRecipeModule(forMeal: MealModelShowed) -> UIViewController {
+    static func createRecipeModule(forMeal: MealObject) -> UIViewController {
         let viewController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "RecipeViewController")
         
         if let view = viewController as? RecipeView {

@@ -168,7 +168,7 @@ extension RecipeView: CAAnimationDelegate {
 
 extension RecipeView: RecipeViewProtocol {
     
-    func showRecipe(forMeal: MealModelShowed) {
+    func showRecipe(forMeal: MealObject) {
         titleLabel?.text = forMeal.name
         ingredientsLabel?.text = forMeal.ingredients.compactMap{$0}.filter{ $0.count > 0 }.enumerated().map { "\($0.offset + 1). \($0.element)\n" }.joined()
         recipeLabel?.text = forMeal.recipe

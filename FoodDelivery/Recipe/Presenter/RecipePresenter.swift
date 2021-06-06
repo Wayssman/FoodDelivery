@@ -11,7 +11,7 @@ class RecipePresenter: RecipePresenterProtocol {
     
     weak var view: RecipeViewProtocol?
     var router: RecipeRouterProtocol?
-    var meal: MealModelShowed?
+    var meal: MealObject?
     
     func viewDidLoad() {
         view?.showRecipe(forMeal: meal!)
