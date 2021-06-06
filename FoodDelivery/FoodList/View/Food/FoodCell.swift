@@ -34,7 +34,7 @@ class FoodCell: UITableViewCell {
         preview.layer.cornerRadius = 10
     }
     
-    func config(meal: MealModelShowed) {
+    func config(meal: MealObject) {
         titleLabel.text = meal.name
         
         descriptionLabel.text = meal.ingredients.compactMap{$0}.filter{ $0.count > 0 }.enumerated().filter { $0.offset < 5 }.map{ $0.element }.joined(separator: ", ")
