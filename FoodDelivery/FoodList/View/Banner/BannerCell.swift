@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BannerCell: UICollectionViewCell {
-    @IBOutlet weak var bannerImage: UIImageView!
-    
+final class BannerCell: UICollectionViewCell {
+  // MARK: - IBOutlets
+  @IBOutlet weak var bannerImage: UIImageView!
 }

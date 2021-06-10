@@ -7,24 +7,25 @@
 
 import UIKit
 
-class CategoryCell: UICollectionViewCell {
+final class CategoryCell: UICollectionViewCell {
+  // MARK: - IBoutlets
+  @IBOutlet weak var categoryButton: UIButton!
+  
+  // MARK: - Public Methods
+  func config(category: String, selected: Bool) {
+    categoryButton.layer.cornerRadius = categoryButton.frame.height / 2
+    categoryButton.layer.borderWidth = 1
+    categoryButton.layer.borderColor = UserPreferences.buttonColor.cgColor
+    categoryButton.setTitle(category, for: .normal)
     
-    @IBOutlet weak var categoryButton: UIButton!
-    
-    func config(category: String, selected: Bool) {
-        categoryButton.layer.cornerRadius = categoryButton.frame.height / 2
-        categoryButton.layer.borderWidth = 1
-        categoryButton.layer.borderColor = UserPreferences.buttonColor.cgColor
-        categoryButton.setTitle(category, for: .normal)
-        
-        if selected {
-            categoryButton.backgroundColor = UserPreferences.selectedButtonColor
-            categoryButton.titleLabel?.tintColor = UserPreferences.selectedButtonTextColor
-            categoryButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
-        } else {
-            categoryButton.backgroundColor = UserPreferences.mainBackgroundColor
-            categoryButton.titleLabel?.tintColor = UserPreferences.buttonColor
-            categoryButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
-        }
+    if selected {
+      categoryButton.backgroundColor = UserPreferences.selectedButtonColor
+      categoryButton.titleLabel?.tintColor = UserPreferences.selectedButtonTextColor
+      categoryButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13)
+    } else {
+      categoryButton.backgroundColor = UserPreferences.mainBackgroundColor
+      categoryButton.titleLabel?.tintColor = UserPreferences.buttonColor
+      categoryButton.titleLabel?.font = UIFont.systemFont(ofSize: 13)
     }
+  }
 }

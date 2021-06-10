@@ -33,7 +33,7 @@
 		FFD48BB2264FBDD400ABF751 /* FoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB1264FBDD400ABF751 /* FoodView.swift */; };
 		FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BB6264FC03200ABF751 /* BannerCell.swift */; };
 		FFD48BBC264FC77600ABF751 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFD48BBB264FC77600ABF751 /* CategoryCell.swift */; };
-		FFDF26A72651479000C768BF /* MealModelShowed.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF26A62651479000C768BF /* MealModelShowed.swift */; };
+		FFDF26A72651479000C768BF /* MealObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFDF26A62651479000C768BF /* MealObject.swift */; };
 		FFE34AAB26614A59005D44B9 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE34AAA26614A59005D44B9 /* RecipeView.swift */; };
 		FFE34AAD26614D0F005D44B9 /* RecipeProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE34AAC26614D0F005D44B9 /* RecipeProtocols.swift */; };
 /* End PBXBuildFile section */
@@ -69,7 +69,7 @@
 		FFD48BB1264FBDD400ABF751 /* FoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodView.swift; sourceTree = "<group>"; };
 		FFD48BB6264FC03200ABF751 /* BannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCell.swift; sourceTree = "<group>"; };
 		FFD48BBB264FC77600ABF751 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
-		FFDF26A62651479000C768BF /* MealModelShowed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModelShowed.swift; sourceTree = "<group>"; };
+		FFDF26A62651479000C768BF /* MealObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealObject.swift; sourceTree = "<group>"; };
 		FFE34AAA26614A59005D44B9 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		FFE34AAC26614D0F005D44B9 /* RecipeProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeProtocols.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -226,7 +226,7 @@
 			children = (
 				FFBC5B95265447DF00D086CB /* MealModel+CoreDataClass.swift */,
 				FFBC5B96265447DF00D086CB /* MealModel+CoreDataProperties.swift */,
-				FFDF26A62651479000C768BF /* MealModelShowed.swift */,
+				FFDF26A62651479000C768BF /* MealObject.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -419,7 +419,7 @@
 				FFBC5B85265433E300D086CB /* FoodListLocalDataManager.swift in Sources */,
 				FF092B6026500AD700D55A89 /* FoodCell.swift in Sources */,
 				FF621EA22651223500F32B72 /* FoodListInteractor.swift in Sources */,
-				FFDF26A72651479000C768BF /* MealModelShowed.swift in Sources */,
+				FFDF26A72651479000C768BF /* MealObject.swift in Sources */,
 				FFD48BB7264FC03200ABF751 /* BannerCell.swift in Sources */,
 				FFBC5B882654394000D086CB /* FoodDeliveryDataModel.xcdatamodeld in Sources */,
 				FFD48B82264F97F100ABF751 /* AppDelegate.swift in Sources */,
