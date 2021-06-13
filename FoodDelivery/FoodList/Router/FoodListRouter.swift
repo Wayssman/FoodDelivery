@@ -8,7 +8,7 @@
 import UIKit
 
 final class FoodListRouter: FooldListRouterProtocol {
-  // MARK: - Public Methods
+  // MARK: - Static Methods
   class func createFoodListModule() -> UIViewController {
     let navigationController = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: "FoodNavigationController")
     
@@ -34,6 +34,7 @@ final class FoodListRouter: FooldListRouterProtocol {
     return UIViewController()
   }
   
+  // MARK: - Public Methods
   func presentRecipeScreen(from view: FoodListViewProtocol, forMeal meal: MealObject) {
     let recipeViewController = RecipeRouter.createRecipeModule(forMeal: meal)
     
