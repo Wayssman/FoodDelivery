@@ -7,18 +7,19 @@
 
 import Foundation
 
-class RecipePresenter: RecipePresenterProtocol {
-    
-    weak var view: RecipeViewProtocol?
-    var router: RecipeRouterProtocol?
-    var meal: MealObject?
-    
-    func viewDidLoad() {
-        view?.showRecipe(forMeal: meal!)
-    }
-    
-    
-    @objc func dismissRecipe() {
-        router?.dismissRecipeScreen(from: view!)
-    }
+final class RecipePresenter: RecipePresenterProtocol {
+  // MARK: - Public Properties
+  weak var view: RecipeViewProtocol?
+  var router: RecipeRouterProtocol?
+  var meal: MealObject?
+  
+  // MARK: - Lifecycle
+  func viewDidLoad() {
+    view?.showRecipe(forMeal: meal!)
+  }
+  
+  // MARK: - Public Methods
+  @objc func dismissRecipe() {
+    router?.dismissRecipeScreen(from: view!)
+  }
 }
